@@ -28,9 +28,22 @@
 
 **Dagster is a cloud-native data pipeline orchestrator for the whole development lifecycle, with integrated lineage and observability, a declarative programming model, and best-in-class testability.**
 
-It is designed for **developing and maintaining data assets**, such as tables, data sets, machine learning models, and reports.
+It is designed for **developing and maintaining data assets**, such as tables, datasets, machine learning models, and reports.
 
 With Dagster, you declare—as Python functions—the data assets that you want to build. Dagster then helps you run your functions at the right time and keep your assets up-to-date.
+
+## Table of Contents
+
+- [Example](#example)
+- [Quick Start](#quick-start)
+- [Documentation](#documentation)
+- [Key Features](#key-features)
+- [Integrations](#integrations)
+- [Community](#community)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Example
 
 Here is an example of a graph of three assets defined in Python:
 
@@ -66,9 +79,9 @@ The graph loaded into Dagster's web UI:
 
 Dagster is built to be used at every stage of the data development lifecycle - local development, unit tests, integration tests, staging environments, all the way up to production.
 
-## Quick Start:
+## Quick Start
 
-If you're new to Dagster, we recommend reading about its [core concepts](https://docs.dagster.io/concepts) or learning with the hands-on [tutorial](https://docs.dagster.io/tutorial).
+### Installation
 
 Dagster is available on PyPI and officially supports Python 3.9 through Python 3.12.
 
@@ -78,10 +91,37 @@ pip install dagster dagster-webserver
 
 This installs two packages:
 
-- `dagster`: The core programming model.
-- `dagster-webserver`: The server that hosts Dagster's web UI for developing and operating Dagster jobs and assets.
+- **dagster**: The core programming model and CLI.
+- **dagster-webserver**: The server that hosts Dagster's web UI for developing and operating Dagster jobs and assets.
 
-Running on a Mac with an Apple silicon chip? Check the [install details here](https://docs.dagster.io/getting-started/install#installing-dagster-into-an-existing-python-environment).
+> **Note:** Running on a Mac with an Apple silicon chip? Check the [install details here](https://docs.dagster.io/getting-started/install#installing-dagster-into-an-existing-python-environment).
+
+### Create Your First Asset
+
+Create a file called `hello_dagster.py`:
+
+```python
+from dagster import asset, Definitions
+
+@asset
+def my_first_asset():
+    """An example asset that returns a simple message."""
+    return "Hello, Dagster!"
+
+defs = Definitions(assets=[my_first_asset])
+```
+
+Run the Dagster web UI:
+
+```bash
+dagster dev -f hello_dagster.py
+```
+
+Then open http://localhost:3000 in your browser to see your asset in the Dagster UI.
+
+### Learn More
+
+If you're new to Dagster, we recommend reading about its [core concepts](https://docs.dagster.io/concepts) or learning with the hands-on [tutorial](https://docs.dagster.io/tutorial).
 
 ## Documentation
 
@@ -89,7 +129,7 @@ You can find the full Dagster documentation [here](https://docs.dagster.io), inc
 
 <hr/>
 
-## Key Features:
+## Key Features
 
   <p align="center">
     <img width="100%" alt="image" src="https://raw.githubusercontent.com/dagster-io/dagster/master/.github/key-features-cards.svg">
@@ -109,34 +149,36 @@ Maintain control over your data as the complexity scales. Centralize your metada
 
 <hr />
 
-## Master the Modern Data Stack with integrations
+## Integrations
 
-Dagster provides a growing library of integrations for today’s most popular data tools. Integrate with the tools you already use, and deploy to your infrastructure.
+Dagster provides a growing library of integrations for today's most popular data tools. Integrate with the tools you already use, and deploy to your infrastructure.
 
-<br/>
 <p align="center">
     <a target="_blank" href="https://dagster.io/integrations" style="background:none">
-        <img width="100%" alt="image" src="https://raw.githubusercontent.com/dagster-io/dagster/master/.github/integrations-bar-for-readme.png">
+        <img width="100%" alt="Dagster integrations including dbt, Snowflake, Spark, and more" src="https://raw.githubusercontent.com/dagster-io/dagster/master/.github/integrations-bar-for-readme.png">
     </a>
 </p>
 
+[Browse all integrations](https://dagster.io/integrations)
+
 ## Community
 
-Connect with thousands of other data practitioners building with Dagster. Share knowledge, get help,
-and contribute to the open-source project. To see featured material and upcoming events, check out
-our [Dagster Community](https://dagster.io/community) page.
+Connect with thousands of other data practitioners building with Dagster. Share knowledge, get help, and contribute to the open-source project. Check out our [Dagster Community](https://dagster.io/community) page for featured material and upcoming events.
 
-Join our community here:
+### Getting Help
 
-- 🌟 [Star us on GitHub](https://github.com/dagster-io/dagster)
-- 📥 [Subscribe to our Newsletter](https://dagster.io/newsletter-signup)
-- 🐦 [Follow us on Twitter](https://twitter.com/dagster)
-- 🕴️ [Follow us on LinkedIn](https://linkedin.com/showcase/dagster)
-- 📺 [Subscribe to our YouTube channel](https://www.youtube.com/@dagsterio)
-- 📚 [Read our blog posts](https://dagster.io/blog)
-- 👋 [Join us on Slack](https://dagster.io/slack)
-- 🗃 [Browse Slack archives](https://discuss.dagster.io)
-- ✏️ [Start a GitHub Discussion](https://github.com/dagster-io/dagster/discussions)
+- [Join us on Slack](https://dagster.io/slack) - Ask questions and get help from the community
+- [Browse Slack archives](https://discuss.dagster.io) - Search past discussions
+- [Start a GitHub Discussion](https://github.com/dagster-io/dagster/discussions) - Discuss ideas and ask questions
+
+### Stay Connected
+
+- [Star us on GitHub](https://github.com/dagster-io/dagster)
+- [Subscribe to our Newsletter](https://dagster.io/newsletter-signup)
+- [Follow us on Twitter](https://twitter.com/dagster)
+- [Follow us on LinkedIn](https://linkedin.com/showcase/dagster)
+- [Subscribe to our YouTube channel](https://www.youtube.com/@dagsterio)
+- [Read our blog posts](https://dagster.io/blog)
 
 ## Contributing
 
